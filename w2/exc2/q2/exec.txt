@@ -1,0 +1,34 @@
+hdfs dfs -rm -r /user/230968114/lab2/addsub_output
+hdfs dfs -rm -r /user/230968114/lab2/mult_output
+hdfs dfs -rm -r /user/230968114/lab2/transpose_output
+
+chmod +x mapper_addsub.py reducer_addsub.py
+chmod +x mapper_mult.py reducer_mult.py
+chmod +x mapper_transpose.py reducer_transpose.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files mapper_addsub.py,reducer_addsub.py \
+-input /user/230968114/lab2/matrix.txt \
+-output /user/230968114/lab2/addsub_output \
+-mapper "python3 mapper_addsub.py" \
+-reducer "python3 reducer_addsub.py"
+
+hdfs dfs -cat /user/230968114/lab2/addsub_output/part-00000
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files mapper_mult.py,reducer_mult.py \
+-input /user/230968114/lab2/matrix.txt \
+-output /user/230968114/lab2/mult_output \
+-mapper "python3 mapper_mult.py" \
+-reducer "python3 reducer_mult.py"
+
+hdfs dfs -cat /user/230968114/lab2/mult_output/part-00000
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files mapper_transpose.py,reducer_transpose.py \
+-input /user/230968114/lab2/matrix.txt \
+-output /user/230968114/lab2/transpose_output \
+-mapper "python3 mapper_transpose.py" \
+-reducer "python3 reducer_transpose.py"
+
+hdfs dfs -cat /user/230968114/lab2/transpose_output/part-00000

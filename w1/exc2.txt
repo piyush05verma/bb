@@ -1,0 +1,27 @@
+a. Remove Directory
+
+hdfs dfs -rmdir /path/to/directory
+hdfs dfs -rm -r /path/to/directory
+hdfs dfs -rm -r -skipTrash /path/to/directory
+
+b. View / Read File Contents
+
+hdfs dfs -cat /path/to/file
+
+c. Download / Copy File from HDFS to Local System
+
+hdfs dfs -get /hdfs/path/file /local/path/
+
+d. Copy / Move Files Within HDFS
+
+hdfs dfs -cp /source/path/file /destination/path/
+hdfs dfs -mv /source/path/file /destination/path/
+
+e. Remove File from HDFS
+
+hdfs dfs -rm /path/to/file
+hdfs dfs -rm -skipTrash /path/to/file
+
+f. View File Permissions
+
+hdfs dfs -ls /path/to/file

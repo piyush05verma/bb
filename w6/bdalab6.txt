@@ -1,0 +1,327 @@
+Week 6 Exercises:
+
+1.
+a) 
+CREATE TABLE weblogs (
+    ip_address STRING,
+    url STRING,
+    status INT,
+    `timestamp` STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES ("skip.header.line.count"="1");
+
+LOAD DATA INPATH '/user/230968114/lab6/weblogs.csv'
+INTO TABLE weblogs;
+
+
+b) 
+SELECT url, COUNT(*) AS visit_count
+FROM weblogs
+GROUP BY url
+ORDER BY visit_count DESC;
+
+c) Timestamp not given
+Generic Query : SELECT hour(from_unixtime(unix_timestamp(timestamp,'yyyy-MM-dd HH:mm:ss'))) AS hour,
+       COUNT(*) AS total_hits
+FROM weblogs
+GROUP BY hour
+ORDER BY total_hits DESC;
+
+
+Sample Output:
++------+------------+
+| hour | total_hits |
++------+------------+
+| 10   | 4          |
+| 11   | 2          |
+| 12   | 1          |
++------+------------+
+
+d) SELECT COUNT(*) FROM weblogs WHERE status = 404;
+
+Output:
+Total MapReduce CPU Time Spent: 3 seconds 870 msec
+OK
+1
+Time taken: 16.653 seconds, Fetched: 1 row(s)
+
+e) CREATE TABLE weblogs_partitioned (
+log_id INT,
+    ip_address STRING,
+    url STRING,
+    status_code INT
+    response_time STRING
+)
+PARTITIONED BY (log_date STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+SET hive.exec.dynamic.partition = true;
+SET hive.exec.dynamic.partition.mode = nonstrict;
+
+INSERT INTO TABLE weblogs_partitioned PARTITION (log_date)
+SELECT ip_address,
+       url,
+       status_code,
+       log_date
+FROM weblogs;
+
+
+f) CREATE TABLE weblogs_bucketed (
+log_id INT,
+    ip_address STRING,
+    url STRING,
+    status_code INT,
+    response_time STRING,
+    log_date STRING
+)
+CLUSTERED BY (status_code) INTO 4 BUCKETS
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC;
+
+SET hive.enforce.bucketing = true;
+INSERT INTO TABLE weblogs_bucketed
+SELECT * FROM weblogs;
+SELECT * FROM weblogs_bucketed WHERE status = 404;
+
+
+2)
+a) hive> CREATE TABLE movie_ratings (
+    >     movie_id INT,
+    >     title STRING,
+    >     genre STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating DOUBLE,
+    >     review_time STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.039 seconds
+hive> load data inpath '/user/230968126/lab6/movie_ratings.csv' into table movie_ratings;
+Loading data to table bigdata_db.movie_ratings
+OK
+Time taken: 0.091 seconds
+
+b) SELECT title, AVG(rating) AS avg_rating
+FROM movie_ratings
+GROUP BY title
+ORDER BY avg_rating DESC
+LIMIT 5;
+
+
+Output:
+OK
+The Dark Knight	9.0
+Inception	8.8
+Spirited Away	8.6
+Interstellar	8.6
+Parasite	8.6
+Time taken: 35.837 seconds, Fetched: 5 row(s)
+
+c) SELECT genre, COUNT(*) AS total_ratings
+FROM movie_ratings
+GROUP BY genre
+ORDER BY total_ratings DESC;
+
+
+Output:
+OK
+Sci-Fi	2
+Action	2
+Thriller	1
+Animation	1
+Time taken: 35.857 seconds, Fetched: 4 row(s)
+
+
+d) SELECT review_year, COUNT(*) AS total_reviews
+FROM (
+    SELECT year(from_unixtime(unix_timestamp(review_time,'yyyy-MM-dd HH:mm:ss'))) AS review_year
+    FROM movie_ratings
+) temp
+GROUP BY review_year
+ORDER BY review_year;
+
+
+Output:
+OK
+2024	6
+Time taken: 36.449 seconds, Fetched: 1 row(s)
+
+
+e) CREATE TABLE movies_partitioned (
+    movie_id INT,
+    title STRING,
+    release_year INT,
+    user_id INT,
+    rating DOUBLE,
+    review_time STRING
+)
+PARTITIONED BY (genre STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+INSERT INTO TABLE movies_partitioned PARTITION (genre)
+SELECT movie_id, title, release_year,
+       user_id, rating, review_time, genre
+FROM movie_ratings;
+
+hive> SELECT * FROM movies_partitioned
+    > WHERE genre = 'Sci-Fi';
+OK
+102	Inception	2010	5002	8.8	2024-01-01 14:00:00	Sci-Fi
+104	Interstellar	2014	5004	8.6	2024-01-03 10:30:00	Sci-Fi
+Time taken: 0.143 seconds, Fetched: 2 row(s)
+
+
+f) CREATE TABLE movies_bucketed (
+    movie_id INT,
+    title STRING,
+    genre STRING,
+    release_year INT,
+    user_id INT,
+    rating DOUBLE,
+    review_time STRING
+)
+CLUSTERED BY (release_year) INTO 4 BUCKETS
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC;
+
+SET hive.enforce.bucketing = true;
+
+INSERT INTO TABLE movies_bucketed
+SELECT * FROM movie_ratings;
+
+SELECT * FROM movies_bucketed
+WHERE release_year = 2019;
+
+
+3)
+a) CREATE TABLE flight_data (
+    flight_id INT,
+    airline STRING,
+    flight_number STRING,
+    origin STRING,
+    destination STRING,
+    departure_date STRING,
+    departure_time STRING,
+    arrival_time STRING,
+    delay_minutes INT,
+    status STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES ("skip.header.line.count"="1");
+
+LOAD DATA INPATH '/user/hive/data/flight_data.csv'
+INTO TABLE flight_data;
+
+
+b) SELECT airline, COUNT(*) AS total_delays
+FROM flight_data
+WHERE status = 'Delayed'
+GROUP BY airline
+ORDER BY total_delays DESC;
+
+
+Output:
++-----------+--------------+
+| airline   | total_delays |
++-----------+--------------+
+| United    | 1            |
+| Southwest | 1            |
++-----------+--------------+
+
+c) SELECT status, COUNT(*) AS total_flights
+FROM flight_data
+GROUP BY status;
+
+Output:
+OK
+NULL	1
+ Delayed	2
+ On Time	3
+Time taken: 16.617 seconds, Fetched: 3 row(s)
+
+d) SELECT airline, AVG(delay_minutes) AS avg_delay
+FROM flight_data
+GROUP BY airline;
+
+Output:
+OK
+ American	NULL
+ Delta	NULL
+ JetBlue	NULL
+ Southwest	NULL
+ United	NULL
+ status	NULL
+
+
+e) CREATE TABLE flight_partitioned (
+    flight_id INT,
+    airline STRING,
+    flight_number STRING,
+    origin STRING,
+    destination STRING,
+    departure_time STRING,
+    arrival_time STRING,
+    delay_minutes INT,
+    status STRING
+)
+PARTITIONED BY (departure_date STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+SET hive.exec.dynamic.partition=true;
+SET hive.exec.dynamic.partition.mode=nonstrict;
+
+INSERT INTO TABLE flight_partitioned PARTITION (departure_date)
+SELECT flight_id, airline, flight_number,
+       origin, destination,
+       departure_time, arrival_time,
+       delay_minutes, status,
+       departure_date
+FROM flight_data;
+
+f) CREATE TABLE flight_bucketed (
+    flight_id INT,
+    airline STRING,
+    flight_number STRING,
+    origin STRING,
+    destination STRING,
+    departure_date STRING,
+    departure_time STRING,
+    arrival_time STRING,
+    delay_minutes INT,
+    status STRING
+)
+CLUSTERED BY (airline) INTO 4 BUCKETS
+STORED AS ORC;
+
+SET hive.enforce.bucketing = true;
+
+INSERT INTO TABLE flight_bucketed
+SELECT * FROM flight_data;
+
+SELECT * FROM flight_bucketed
+WHERE airline = 'Delta';
+
+
+
+
+
+
+
+
+
+
+

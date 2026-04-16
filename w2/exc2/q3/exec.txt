@@ -1,0 +1,12 @@
+hdfs dfs -rm -r /user/230968114/lab2/students_output
+
+chmod +x mapper_sort.py reducer_sort.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files mapper_sort.py,reducer_sort.py \
+-input /user/230968114/lab2/students.txt \
+-output /user/230968114/lab2/students_output \
+-mapper "python3 mapper_sort.py" \
+-reducer "python3 reducer_sort.py"
+
+hdfs dfs -cat /user/230968114/lab2/students_output/part-00000

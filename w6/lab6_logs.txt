@@ -1,0 +1,1715 @@
+bdalab@dscalab-03:~$ start-hdfs.sh
+start-hdfs.sh: command not found
+bdalab@dscalab-03:~$ start-dfs.sh
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [dscalab-03]
+bdalab@dscalab-03:~$ start-yarn.sh
+Starting resourcemanager
+Starting nodemanagers
+bdalab@dscalab-03:~$ hdfs dfs -ls
+Found 4 items
+drwxr-xr-x   - bdalab supergroup          0 2026-01-31 10:25 .bdalab
+drwxr-xr-x   - bdalab supergroup          0 2026-01-06 10:06 Week1
+drwxr-xr-x   - bdalab supergroup          0 2026-01-29 08:59 lab4
+drwxr-xr-x   - bdalab supergroup          0 2026-01-22 09:17 tmp
+bdalab@dscalab-03:~$ hdfs dfs -ls /user/
+Found 10 items
+drwxr-xr-x   - bdalab supergroup          0 2026-02-05 09:19 /user/230968114
+drwxr-xr-x   - bdalab supergroup          0 2026-01-30 14:33 /user/230968180
+drwxr-xr-x   - bdalab supergroup          0 2026-01-13 10:42 /user/230968356
+drwxr-xr-x   - bdalab supergroup          0 2026-02-04 15:45 /user/230968386
+drwxr-xr-x   - bdalab supergroup          0 2026-02-09 14:17 /user/230968390
+drwxr-xr-x   - bdalab supergroup          0 2026-01-31 10:25 /user/bdalab
+drwxr-xr-x   - bdalab supergroup          0 2026-01-07 14:14 /user/dir_name
+drwxr-xr-x   - bdalab supergroup          0 2026-01-13 10:35 /user/ds001
+drwxr-xr-x   - bdalab supergroup          0 2024-12-28 11:03 /user/hive
+drwxr-xr-x   - bdalab supergroup          0 2026-01-07 14:15 /user/test
+bdalab@dscalab-03:~$ hdfs dfs -ls /user/230968114/
+Found 4 items
+drwxr-xr-x   - bdalab supergroup          0 2026-01-15 10:43 /user/230968114/lab2
+drwxr-xr-x   - bdalab supergroup          0 2026-01-29 09:03 /user/230968114/lab3
+drwxr-xr-x   - bdalab supergroup          0 2026-01-29 09:36 /user/230968114/lab4
+drwxr-xr-x   - bdalab supergroup          0 2026-02-05 09:20 /user/230968114/lab5
+bdalab@dscalab-03:~$ hdfs dfs -mkdir /user/230968114/lab6
+bdalab@dscalab-03:~$ ls
+ 230968114             Desktop             join_mapper.py      Python-3.6.5.tgz
+ 230968142             Documents           join_reducer.py     rclone.log
+ 230968180             Downloads           Music               snap
+ 230968386             hadoop_lab          Pictures            students.txt
+ 230968386.zip         help                pig-0.17.0          Templates
+ bdalab                input_wc            pig-0.17.0.tar.gz   tmp
+'BDA LAB MANUAL.pdf'   jarvis_rclone.log   Public              Videos
+ courses.txt           jarvis_start_sync   Python-3.6.5        week5
+bdalab@dscalab-03:~$ cd 230968114
+bdalab@dscalab-03:~/230968114$ ls
+lab4  lab5
+bdalab@dscalab-03:~/230968114$ mkdir lab6
+bdalab@dscalab-03:~/230968114$ cd lab6
+bdalab@dscalab-03:~/230968114/lab6$ ls
+bdalab@dscalab-03:~/230968114/lab6$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 200c5be2-4311-4a65-ae1e-6eee0064ba49
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> bdalab@dscalab-03:~/230968114/lab6$ nano weblogs.csv
+bdalab@dscalab-03:~/230968114/lab6$ nano movie_ratings.csv
+bdalab@dscalab-03:~/230968114/lab6$ nano flight_data.csv
+bdalab@dscalab-03:~/230968114/lab6$ hdfs dfs -put weblogs.csv /user/230968114/lab6
+bdalab@dscalab-03:~/230968114/lab6$ hdfs dfs -put movie_ratings.csv /user/230968114/lab6
+bdalab@dscalab-03:~/230968114/lab6$ hdfs dfs -put flight_data.csv /user/230968114/lab6
+bdalab@dscalab-03:~/230968114/lab6$ CREATE TABLE weblogs (
+    log_id INT,
+    ip_address STRING
+    url STRING,
+    status_code INT,
+    response_time STRING,
+    log_date STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES ("skip.header.line.count"="1");
+bash: syntax error near unexpected token `('
+Command 'log_id' not found, did you mean:
+  command 'logid' from deb logiops (0.2.2-2)
+Try: sudo apt install <deb name>
+Command 'ip_address' not found, did you mean:
+  command 'ip-address' from snap ip-address (1.0.0)
+See 'snap info <snapname>' for additional versions.
+Command 'url' not found, did you mean:
+  command 'yurl' from snap yurl (v0.6.3)
+  command 'curl' from snap curl (8.18.0)
+  command 'erl' from snap erlang (25.3)
+  command 'surl' from snap surl (0.8.0)
+  command 'urh' from snap urh (2.9.3)
+  command 'zurl' from deb zurl (1.11.1-1)
+  command 'ur' from deb libur-perl (0.470+ds-2)
+  command 'ul' from deb bsdextrautils (2.37.2-4ubuntu3.4)
+  command 'curl' from deb curl (7.81.0-1ubuntu1.21)
+  command 'uil' from deb uil (2.3.8-3)
+  command 'erl' from deb erlang-base (1:24.2.1+dfsg-1ubuntu0.6)
+See 'snap info <snapname>' for additional versions.
+status_code: command not found
+response_time: command not found
+log_date: command not found
+bash: syntax error near unexpected token `)'
+ROW: command not found
+FIELDS: command not found
+STORED: command not found
+bash: syntax error near unexpected token `"skip.header.line.count"="1"'
+bdalab@dscalab-03:~/230968114/lab6$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 8c843a2a-41f2-4e51-bbd9-bc55efd15e64
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> CREATE TABLE weblogs (
+    >     log_id INT,
+    >     ip_address STRING
+    >     url STRING,
+    >     status_code INT,
+    >     response_time STRING,
+    >     log_date STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+MismatchedTokenException(24!=374)
+	at org.antlr.runtime.BaseRecognizer.recoverFromMismatchedToken(BaseRecognizer.java:617)
+	at org.antlr.runtime.BaseRecognizer.match(BaseRecognizer.java:115)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.createTableStatement(HiveParser.java:6666)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:4295)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2494)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 4:4 mismatched input 'url' expecting ) near 'STRING' in create table statement
+hive> CREATE TABLE weblogs (
+    >     log_id INT,
+    >     ip_address STRING
+    >     url STRING,
+    >     status_code INT,
+    >     response_time STRING,
+    >     log_date STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+MismatchedTokenException(24!=374)
+	at org.antlr.runtime.BaseRecognizer.recoverFromMismatchedToken(BaseRecognizer.java:617)
+	at org.antlr.runtime.BaseRecognizer.match(BaseRecognizer.java:115)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.createTableStatement(HiveParser.java:6666)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:4295)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2494)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 4:4 mismatched input 'url' expecting ) near 'STRING' in create table statement
+hive> CREATE TABLE weblogs (
+    >     log_id INT,
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     response_time STRING,
+    >     log_date STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+FAILED: HiveException java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
+hive> CREATE DATABASE bigdata_db;
+FAILED: HiveException java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
+hive> USE bigdata_db;
+FAILED: HiveException java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
+hive> 
+    > CREATE TABLE weblogs (
+    >     log_id INT,
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     response_time STRING,
+    >     log_date STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+FAILED: HiveException java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
+hive> exit
+    > bdalab@dscalab-03:~/230968114/lab6$ sudo service mysql status
+[sudo] password for bdalab: 
+Unit mysql.service could not be found.
+bdalab@dscalab-03:~/230968114/lab6$ sudo service mysql start
+Failed to start mysql.service: Unit mysql.service not found.
+bdalab@dscalab-03:~/230968114/lab6$ schematool -dbType derby -initSchema
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Metastore connection URL:	 jdbc:derby:;databaseName=metastore_db;create=true
+Metastore Connection Driver :	 org.apache.derby.jdbc.EmbeddedDriver
+Metastore connection User:	 APP
+Starting metastore schema initialization to 3.1.0
+Initialization script hive-schema-3.1.0.derby.sql
+
+ 
+Error: FUNCTION 'NUCLEUS_ASCII' already exists. (state=X0Y68,code=30000)
+org.apache.hadoop.hive.metastore.HiveMetaException: Schema initialization FAILED! Metastore state would be inconsistent !!
+Underlying cause: java.io.IOException : Schema script failed, errorcode 2
+Use --verbose for detailed stacktrace.
+*** schemaTool failed ***
+bdalab@dscalab-03:~/230968114/lab6$ hive --service metastore
+2026-02-12 09:14:54: Starting Hive Metastore Server
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+MetaException(message:Version information not found in metastore.)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.<init>(RetryingHMSHandler.java:84)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.getProxy(RetryingHMSHandler.java:93)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.newRetryingHMSHandler(HiveMetaStore.java:8672)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.newRetryingHMSHandler(HiveMetaStore.java:8667)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.startMetaStore(HiveMetaStore.java:8937)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.main(HiveMetaStore.java:8854)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+Caused by: MetaException(message:Version information not found in metastore.)
+	at org.apache.hadoop.hive.metastore.ObjectStore.checkSchema(ObjectStore.java:9085)
+	at org.apache.hadoop.hive.metastore.ObjectStore.verifySchema(ObjectStore.java:9063)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.hive.metastore.RawStoreProxy.invoke(RawStoreProxy.java:97)
+	at com.sun.proxy.$Proxy25.verifySchema(Unknown Source)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.getMSForConf(HiveMetaStore.java:699)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.getMS(HiveMetaStore.java:692)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.createDefaultDB(HiveMetaStore.java:769)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.init(HiveMetaStore.java:540)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.invokeInternal(RetryingHMSHandler.java:147)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.invoke(RetryingHMSHandler.java:108)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.<init>(RetryingHMSHandler.java:80)
+	... 11 more
+Exception in thread "main" MetaException(message:Version information not found in metastore.)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.<init>(RetryingHMSHandler.java:84)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.getProxy(RetryingHMSHandler.java:93)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.newRetryingHMSHandler(HiveMetaStore.java:8672)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.newRetryingHMSHandler(HiveMetaStore.java:8667)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.startMetaStore(HiveMetaStore.java:8937)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore.main(HiveMetaStore.java:8854)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+Caused by: MetaException(message:Version information not found in metastore.)
+	at org.apache.hadoop.hive.metastore.ObjectStore.checkSchema(ObjectStore.java:9085)
+	at org.apache.hadoop.hive.metastore.ObjectStore.verifySchema(ObjectStore.java:9063)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.hive.metastore.RawStoreProxy.invoke(RawStoreProxy.java:97)
+	at com.sun.proxy.$Proxy25.verifySchema(Unknown Source)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.getMSForConf(HiveMetaStore.java:699)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.getMS(HiveMetaStore.java:692)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.createDefaultDB(HiveMetaStore.java:769)
+	at org.apache.hadoop.hive.metastore.HiveMetaStore$HMSHandler.init(HiveMetaStore.java:540)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.invokeInternal(RetryingHMSHandler.java:147)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.invoke(RetryingHMSHandler.java:108)
+	at org.apache.hadoop.hive.metastore.RetryingHMSHandler.<init>(RetryingHMSHandler.java:80)
+	... 11 more
+bdalab@dscalab-03:~/230968114/lab6$ hive
+sSLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = b0fe68da-295f-49a9-9abb-fbc7025437f4
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> show databases
+    > 
+    > 
+    > 
+    > 
+    > bdalab@dscalab-03:~/230968114/rm -rf metastore_dbore_db
+rm -rf derby.log
+schematool -dbType derby -initSchema
+hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Metastore connection URL:	 jdbc:derby:;databaseName=metastore_db;create=true
+Metastore Connection Driver :	 org.apache.derby.jdbc.EmbeddedDriver
+Metastore connection User:	 APP
+Starting metastore schema initialization to 3.1.0
+Initialization script hive-schema-3.1.0.derby.sql
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+
+ 
+
+
+
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+
+Initialization script completed
+schemaTool completed
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 7ff21d17-0fe1-4e0b-aa5f-10e4117678a1
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.Hive Session ID = bfe2c78f-4d3a-4afd-b167-5df8383f7a1a
+
+hive> CREATE DATABASE bigdata_db;
+OK
+Time taken: 0.289 seconds
+hive> USE bigdata_db;
+OK
+Time taken: 0.022 seconds
+hive> 
+    > CREATE TABLE weblogs (
+    >     log_id INT,
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     response_time STRING,
+    >     log_date STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.345 seconds
+hive> load data inpath '/user/230968114/lab6/weblogs.csv' into table weblogs
+    > ;
+Loading data to table bigdata_db.weblogs
+OK
+Time taken: 0.436 seconds
+hive> select url, count(*) as visit_count from weblogs group by url order by visit_count desc
+    > ;
+FAILED: IllegalStateException java.lang.RuntimeException: The dir: /tmp/hive/_resultscache_ on HDFS should be writable. Current permissions are: rwx------
+hive> hdfs dfs -chmod -R 777 /user
+    > bdalab@dscalab-03:~/230968114/lab6$ hdfs dfs -chmod -R 777/user
+-chmod: Not enough arguments: expected 2 but got 1
+Usage: hadoop fs [generic options]
+	[-appendToFile [-n] <localsrc> ... <dst>]
+	[-cat [-ignoreCrc] <src> ...]
+	[-checksum [-v] <src> ...]
+	[-chgrp [-R] GROUP PATH...]
+	[-chmod [-R] <MODE[,MODE]... | OCTALMODE> PATH...]
+	[-chown [-R] [OWNER][:[GROUP]] PATH...]
+	[-concat <target path> <src path> <src path> ...]
+	[-copyFromLocal [-f] [-p] [-l] [-d] [-t <thread count>] [-q <thread pool queue size>] <localsrc> ... <dst>]
+	[-copyToLocal [-f] [-p] [-crc] [-ignoreCrc] [-t <thread count>] [-q <thread pool queue size>] <src> ... <localdst>]
+	[-count [-q] [-h] [-v] [-t [<storage type>]] [-u] [-x] [-e] [-s] <path> ...]
+	[-cp [-f] [-p | -p[topax]] [-d] [-t <thread count>] [-q <thread pool queue size>] <src> ... <dst>]
+	[-createSnapshot <snapshotDir> [<snapshotName>]]
+	[-deleteSnapshot <snapshotDir> <snapshotName>]
+	[-df [-h] [<path> ...]]
+	[-du [-s] [-h] [-v] [-x] <path> ...]
+	[-expunge [-immediate] [-fs <path>]]
+	[-find <path> ... <expression> ...]
+	[-get [-f] [-p] [-crc] [-ignoreCrc] [-t <thread count>] [-q <thread pool queue size>] <src> ... <localdst>]
+	[-getfacl [-R] <path>]
+	[-getfattr [-R] {-n name | -d} [-e en] <path>]
+	[-getmerge [-nl] [-skip-empty-file] <src> <localdst>]
+	[-head <file>]
+	[-help [cmd ...]]
+	[-ls [-C] [-d] [-h] [-q] [-R] [-t] [-S] [-r] [-u] [-e] [<path> ...]]
+	[-mkdir [-p] <path> ...]
+	[-moveFromLocal [-f] [-p] [-l] [-d] <localsrc> ... <dst>]
+	[-moveToLocal <src> <localdst>]
+	[-mv <src> ... <dst>]
+	[-put [-f] [-p] [-l] [-d] [-t <thread count>] [-q <thread pool queue size>] <localsrc> ... <dst>]
+	[-renameSnapshot <snapshotDir> <oldName> <newName>]
+	[-rm [-f] [-r|-R] [-skipTrash] [-safely] <src> ...]
+	[-rmdir [--ignore-fail-on-non-empty] <dir> ...]
+	[-setfacl [-R] [{-b|-k} {-m|-x <acl_spec>} <path>]|[--set <acl_spec> <path>]]
+	[-setfattr {-n name [-v value] | -x name} <path>]
+	[-setrep [-R] [-w] <rep> <path> ...]
+	[-stat [format] <path> ...]
+	[-tail [-f] [-s <sleep interval>] <file>]
+	[-test -[defswrz] <path>]
+	[-text [-ignoreCrc] <src> ...]
+	[-touch [-a] [-m] [-t TIMESTAMP (yyyyMMdd:HHmmss) ] [-c] <path> ...]
+	[-touchz <path> ...]
+	[-truncate [-w] <length> <path> ...]
+	[-usage [cmd ...]]
+
+Generic options supported are:
+-conf <configuration file>        specify an application configuration file
+-D <property=value>               define a value for a given property
+-fs <file:///|hdfs://namenode:port> specify default filesystem URL to use, overrides 'fs.defaultFS' property from configurations.
+-jt <local|resourcemanager:port>  specify a ResourceManager
+-files <file1,...>                specify a comma-separated list of files to be copied to the map reduce cluster
+-libjars <jar1,...>               specify a comma-separated list of jar files to be included in the classpath
+-archives <archive1,...>          specify a comma-separated list of archives to be unarchived on the compute machines
+
+The general command line syntax is:
+command [genericOptions] [commandOptions]
+
+Usage: hadoop fs [generic options] -chmod [-R] <MODE[,MODE]... | OCTALMODE> PATH...
+bdalab@dscalab-03:~/230968114/lab6$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = e1e6fde6-4d9d-49c7-8ada-0aea4d2646e9
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive Session ID = c870720e-8c31-4b4d-a700-b8c786bb1105
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> SELECT url, COUNT(*) AS visit_count
+    > FROM weblogs
+    > GROUP BY url
+    > ORDER BY visit_count DESC;
+FAILED: SemanticException [Errorcreat 10001]: Line 2:5 Table not found 'weblogs'
+hive> 
+    > show databases
+    > ;
+OK
+bigdata_db
+default
+Time taken: 0.114 seconds, Fetched: 2 row(s)
+hive> use bigdata_db;show tables
+OK
+Time taken: 0.024 seconds
+hive> show tables;
+OK
+weblogs
+Time taken: 0.023 seconds, Fetched: 1 row(s)
+hive> SELECT url, COUNT(*) AS visit_count from weblogs group by url order by visit_count desc;
+FAILED: IllegalStateException java.lang.RuntimeException: The dir: /tmp/hive/_resultscache_ on HDFS should be writable. Current permissions are: rwx------
+hive> bdalab@dscalab-03:~/230968114/lab6$ hdfs dfs -chmod -R 777 /tmp
+bdalab@dscalab-03:~/230968114/lab6$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 5baf1e7c-5891-4ae5-b48a-f03332961cb6
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Hive Session ID = c008a484-fc51-4c50-b7a5-4fe6f9649642
+hive> use bigdata_db
+    > ;
+OK
+Time taken: 0.247 seconds
+hive> select url, count(*) as visit_count from weblogs group by url order by visit_count desc;
+Query ID = bdalab_20260212092147_a10e34a9-b3bd-4443-8284-5733f7d7b6b6
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0001, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0001/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0001
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:21:56,889 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:22:01,000 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.04 sec
+2026-02-12 09:22:06,115 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.71 sec
+MapReduce Total cumueducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0003, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0003/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0003
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:31:15,822 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:31:19,900 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.93 sec
+2026-02-12 09:31:24,990 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.87 sec
+MapReduce Total cumulative CPU time: 3 seconds 870 msec
+Ended Job = job_1770866841931_0003
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.87 sec   HDFS Read: 14631 HDFS Write: 101 SUCCESSe.ql.parse.HiveParser_IdentifiersParser.precedenceUnarySuffixExpression(HiveParser_IdentifiersParser.java:7727)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceBitwiseXorExpression(HiveParser_IdentifiersParser.java:7889)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceStarExpression(HiveParser_IdentifiersParser.java:8032)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedencePlusExpression(HiveParser_IdentifiersParser.java:8175)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceConcatenateExpression(HiveParser_IdentifiersParser.java:8314)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceAmpersandExpression(HiveParser_IdentifiersParser.java:8524)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceBitwiseOrExpression(HiveParser_IdentifiersParser.java:8661)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceSimilarExpressionMain(HiveParser_IdentifiersParser.java:9144)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceSimilarExpression(HiveParser_IdentifiersParser.java:9040)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceEqualExpression(HiveParser_IdentifiersParser.java:10254)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceNotExpression(HiveParser_IdentifiersParser.java:10541)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceAndExpression(HiveParser_IdentifiersParser.java:10650)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceOrExpression(HiveParser_IdentifiersParser.java:10791)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.expression(HiveParser_IdentifiersParser.java:6870)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.expression(HiveParser.java:45188)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_SelectClauseParser.selectExpression(HiveParser_SelectClauseParser.java:2296)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.selectExpression(HiveParser.java:45128)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.function(HiveParser_IdentifiersParser.java:3581)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.atomExpression(HiveParser_IdentifiersParser.java:7081)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceFieldExpression(HiveParser_IdentifiersParser.java:7172)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceUnaryPrefixExpression(HiveParser_IdentifiersParser.java:7671)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceUnarySuffixExpression(HiveParser_IdentifiersParser.java:7727)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceBitwiseXorExpression(HiveParser_IdentifiersParser.java:7889)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceStarExpression(HiveParser_IdentifiersParser.java:8032)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedencePlusExpression(HiveParser_IdentifiersParser.java:8175)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceConcatenateExpression(HiveParser_IdentifiersParser.java:8314)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceAmpersandExpression(HiveParser_IdentifiersParser.java:8524)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceBitwiseOrExpression(HiveParser_IdentifiersParser.java:8661)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceSimilarExpressionMain(HiveParser_IdentifiersParser.java:9144)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceSimilarExpression(HiveParser_IdentifiersParser.java:9040)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceEqualExpression(HiveParser_IdentifiersParser.java:10254)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceNotExpression(HiveParser_IdentifiersParser.java:10541)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceAndExpression(HiveParser_IdentifiersParser.java:10650)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceOrExpression(HiveParser_IdentifiersParser.java:10791)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.expression(HiveParser_IdentifiersParser.java:6870)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.expression(HiveParser.java:45188)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_SelectClauseParser.selectItem(HiveParser_SelectClauseParser.java:1720)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_SelectClauseParser.selectList(HiveParser_SelectClauseParser.java:1234)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_SelectClauseParser.selectClause(HiveParser_SelectClauseParser.java:1004)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.selectClause(HiveParser.java:45252)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.atomSelectStatement(HiveParser.java:39777)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.selectStatement(HiveParser.java:40044)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.regularBody(HiveParser.java:39582)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.queryStatementExpressionBody(HiveParser.java:38900)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.queryStatementExpression(HiveParser.java:38788)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2396)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 5:23 cannot recognize input near 'timestamp' ',' '1' in expression specification
+hive> 
+    > 
+    > CREATE TABLE weblogs_bucketed (
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     timestamp STRING
+    > )
+    > CLUSTERED BY (status) INTO 4 BUCKETS
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS ORC;
+NoViableAltException(309@[2389:1: columnNameTypeOrConstraint : ( ( tableConstraint ) | ( columnNameTypeConstraint ) );])
+	at org.antlr.runtime.DFA.noViableAlt(DFA.java:158)
+	at org.antlr.runtime.DFA.predict(DFA.java:116)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraint(HiveParser.java:34044)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraintList(HiveParser.java:29840)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.createTableStatement(HiveParser.java:6662)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:4295)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2494)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 5:4 cannot recognize input near 'timestamp' 'STRING' ')' in column name or constraint
+hive> INSERT INTO TABLE weblogs_partitioned PARTITION (log_date)
+    > SELECT ip_address,
+    >        url,
+    >        status_code,
+    >        log_date
+    > FROM weblogs;
+Query ID = bdalab_20260212093646_2045717d-7ba9-429b-b3c1-41d7fc6568bb
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0004, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0004/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0004
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:36:53,234 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:36:57,319 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.03 sec
+2026-02-12 09:37:02,405 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.57 sec
+MapReduce Total cumulative CPU time: 4 seconds 570 msec
+Ended Job = job_1770866841931_0004
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Moving data to directory hdfs://localhost:9000/user/hive/warehouse/bigdata_db.db/weblogs_partitioned/.hive-staging_hive_2026-02-12_09-36-46_562_4701689397920772248-1/-ext-10000
+Loading data to table bigdata_db.weblogs_partitioned partition (log_date=null)
+
+
+	 Time taken to load dynamic partitions: 0.296 seconds
+	 Time taken for adding to write entity : 0.001 seconds
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.57 sec   HDFS Read: 17400 HDFS Write: 811 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 570 msec
+OK
+Time taken: 17.423 seconds
+hive> f) CREATE TABLE weblogs_bucketed (
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     log_date STRING
+    > )
+    > CLUSTERED BY (status) INTO 4 BUCKETS
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS ORC;
+NoViableAltException(24@[])
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1387)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 1:0 cannot recognize input near 'f' ')' 'CREATE'
+hive> CREATE TABLE weblogs_bucketed (
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     log_date STRING
+    > )
+    > CLUSTERED BY (status) INTO 4 BUCKETS
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS ORC;
+FAILED: SemanticException [Error 10002]: Invalid column reference  'status'
+hive> CREATE TABLE weblogs_bucketed (
+    >     ip_address STRING,
+    >     url STRING,
+    >     status_code INT,
+    >     log_date STRING
+    > )
+    > CLUSTERED BY (status_code) INTO 4 BUCKETS
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS ORC;
+OK
+Time taken: 0.039 seconds
+hive> SET hive.enforce.bucketing = true;
+hive> INSERT INTO TABLE weblogs_bucketed
+    > SELECT * FROM weblogs;
+FAILED: SemanticException [Error 10044]: Line 1:18 Cannot insert into target table because column number/types are different 'weblogs_bucketed': Table insclause-0 has 4 columns, but query has 6 columns.
+hive> SELECT * FROM weblogs_bucketed WHERE status = 404;
+FAILED: SemanticException [Error 10004]: Line 1:37 Invalid table alias or column reference 'status': (possible column names are: ip_address, url, status_code, log_date)
+hive> CREATE TABLE movie_ratings (
+    >     movie_id INT,
+    >     title STRING,
+    >     genre STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating DOUBLE,
+    >     timestamp STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+NoViableAltException(309@[2389:1: columnNameTypeOrConstraint : ( ( tableConstraint ) | ( columnNameTypeConstraint ) );])
+	at org.antlr.runtime.DFA.noViableAlt(DFA.java:158)
+	at org.antlr.runtime.DFA.predict(DFA.java:116)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraint(HiveParser.java:34044)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraintList(HiveParser.java:29840)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.createTableStatement(HiveParser.java:6662)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:4295)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2494)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 8:4 cannot recognize input near 'timestamp' 'STRING' ')' in column name or constraint
+hive> ls
+    > ;
+NoViableAltException(24@[])
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1387)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 1:0 cannot recognize input near 'ls' '<EOF>' '<EOF>'
+hive> show databases;
+OK
+bigdata_db
+default
+Time taken: 0.012 seconds, Fetched: 2 row(s)
+hive> use bigdata_db;
+OK
+Time taken: 0.011 seconds
+hive> show tables;
+OK
+weblogs
+weblogs_bucketed
+weblogs_partitioned
+Time taken: 0.017 seconds, Fetched: 3 row(s)
+hive> CREATE TABLE movie_ratings (
+    >     movie_id INT,
+    >     title STRING,
+    >     genre STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating DOUBLE,
+    >     timestamp STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+NoViableAltException(309@[2389:1: columnNameTypeOrConstraint : ( ( tableConstraint ) | ( columnNameTypeConstraint ) );])
+	at org.antlr.runtime.DFA.noViableAlt(DFA.java:158)
+	at org.antlr.runtime.DFA.predict(DFA.java:116)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraint(HiveParser.java:34044)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraintList(HiveParser.java:29840)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.createTableStatement(HiveParser.java:6662)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:4295)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2494)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 8:4 cannot recognize input near 'timestamp' 'STRING' ')' in column name or constraint
+hive> CREATE TABLE movie_ratings (
+    >     movie_id INT,
+    >     title STRING,
+    >     genre STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating FLOAT,
+    >     timestamp STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+NoViableAltException(309@[2389:1: columnNameTypeOrConstraint : ( ( tableConstraint ) | ( columnNameTypeConstraint ) );])
+	at org.antlr.runtime.DFA.noViableAlt(DFA.java:158)
+	at org.antlr.runtime.DFA.predict(DFA.java:116)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraint(HiveParser.java:34044)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.columnNameTypeOrConstraintList(HiveParser.java:29840)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.createTableStatement(HiveParser.java:6662)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:4295)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2494)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 8:4 cannot recognize input near 'timestamp' 'STRING' ')' in column name or constraint
+hive> CREATE TABLE movie_ratings (
+    >     movie_id INT,
+    >     title STRING,
+    >     genre STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating DOUBLE,
+    >     review_time STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.039 seconds
+hive> load data inpath '/user/230968114/lab6/movie_ratings.csv' into table movie_ratings;
+Loading data to table bigdata_db.movie_ratings
+OK
+Time taken: 0.091 seconds
+hive> select title, avg(rating) as avg_rating from movie_ratings group by title order by avg_rating desc limit 5;
+Query ID = bdalab_20260212094540_b7e9ed81-c67a-422b-bebc-5b44c8ace4eb
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0005, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0005/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0005
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:45:47,032 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:45:51,113 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.01 sec
+2026-02-12 09:45:56,201 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 5.05 sec
+MapReduce Total cumulative CPU time: 5 seconds 50 msec
+Ended Job = job_1770866841931_0005
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0006, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0006/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0006
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-02-12 09:46:06,714 Stage-2 map = 0%,  reduce = 0%
+2026-02-12 09:46:10,788 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 2.82 sec
+2026-02-12 09:46:13,849 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 4.44 sec
+MapReduce Total cumulative CPU time: 4 seconds 440 msec
+Ended Job = job_1770866841931_0006
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 5.05 sec   HDFS Read: 15583 HDFS Write: 326 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 4.44 sec   HDFS Read: 7785 HDFS Write: 229 SUCCESS
+Total MapReduce CPU Time Spent: 9 seconds 490 msec
+OK
+The Dark Knight	9.0
+Inception	8.8
+Spirited Away	8.6
+Interstellar	8.6
+Parasite	8.6
+Time taken: 35.837 seconds, Fetched: 5 row(s)
+hive> select genre, count(*) as total_ratings from movie_ratings group by genre order by total_ratings desc;
+Query ID = bdalab_20260212094704_da938e96-22cf-49e8-a872-214bd7226602
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0007, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0007/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0007
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:47:12,053 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:47:16,143 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.02 sec
+2026-02-12 09:47:20,218 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.65 sec
+MapReduce Total cumulative CPU time: 4 seconds 650 msec
+Ended Job = job_1770866841931_0007
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0008, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0008/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0008
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-02-12 09:47:30,955 Stage-2 map = 0%,  reduce = 0%
+2026-02-12 09:47:35,026 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 2.86 sec
+2026-02-12 09:47:39,090 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 4.4 sec
+MapReduce Total cumulative CPU time: 4 seconds 400 msec
+Ended Job = job_1770866841931_0008
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.65 sec   HDFS Read: 13689 HDFS Write: 201 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 4.4 sec   HDFS Read: 7659 HDFS Write: 176 SUCCESS
+Total MapReduce CPU Time Spent: 9 seconds 50 msec
+OK
+Sci-Fi	2
+Action	2
+Thriller	1
+Animation	1
+Time taken: 35.857 seconds, Fetched: 4 row(s)
+hive> select year(from_unixtime(unix_timestamp(review_time,'yyyy-MM-dd HH:mm:ss'))) as review_year count(*) as total_reviews from movie_ratings group by review_year order by review_year;
+FAILED: ParseException line 1:93 missing EOF at 'count' near 'review_year'
+hive> SELECT year(from_unixtime(unix_timestamp(review_time,'yyyy-MM-dd HH:mm:ss'))) AS review_year,
+    >        COUNT(*) AS total_reviews
+    > FROM movie_ratings
+    > GROUP BY review_year
+    > ORDER BY review_year;
+FAILED: SemanticException [Error 10004]: Line 4:9 Invalid table alias or column reference 'review_year': (possible column names are: movie_id, title, genre, release_year, user_id, rating, review_time)
+hive> SELECT review_year, COUNT(*) AS total_reviews
+    > FROM (
+    >     SELECT year(from_unixtime(unix_timestamp(review_time,'yyyy-MM-dd HH:mm:ss'))) AS review_year
+    >     FROM movie_ratings
+    > ) temp
+    > GROUP BY review_year
+    > ORDER BY review_year;
+Query ID = bdalab_20260212095059_3fc76a34-ea5b-41f6-9370-33193f3b8250
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0009, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0009/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0009
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:51:07,530 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:51:11,614 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.29 sec
+2026-02-12 09:51:16,698 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.87 sec
+MapReduce Total cumulative CPU time: 4 seconds 870 msec
+Ended Job = job_1770866841931_0009
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0010, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0010/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0010
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-02-12 09:51:26,994 Stage-2 map = 0%,  reduce = 0%
+2026-02-12 09:51:31,072 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.36 sec
+2026-02-12 09:51:35,134 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 2.85 sec
+MapReduce Total cumulative CPU time: 2 seconds 850 msec
+Ended Job = job_1770866841931_0010
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.87 sec   HDFS Read: 15575 HDFS Write: 117 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 2.85 sec   HDFS Read: 7551 HDFS Write: 106 SUCCESS
+Total MapReduce CPU Time Spent: 7 seconds 720 msec
+OK
+2024	6
+Time taken: 36.449 seconds, Fetched: 1 row(s)
+hive> CREATE TABLE movies_partitioned (
+    >     movie_id INT,
+    >     title STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating DOUBLE,
+    >     review_time STRING
+    > )
+    > PARTITIONED BY (genre STRING)
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ',';
+OK
+Time taken: 0.033 seconds
+hive> INSERT INTO TABLE movies_partitioned PARTITION (genre)
+    > SELECT movie_id, title, release_year,
+    >        user_id, rating, review_time, genre
+    > FROM movie_ratings;
+Query ID = bdalab_20260212095317_882574b9-1991-4da9-897a-94703472e4d7
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0011, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0011/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0011
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:53:24,677 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:53:29,771 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.65 sec
+2026-02-12 09:53:33,841 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 5.32 sec
+MapReduce Total cumulative CPU time: 5 seconds 320 msec
+Ended Job = job_1770866841931_0011
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Moving data to directory hdfs://localhost:9000/user/hive/warehouse/bigdata_db.db/movies_partitioned/.hive-staging_hive_2026-02-12_09-53-17_675_6702145201655105756-1/-ext-10000
+Loading data to table bigdata_db.movies_partitioned partition (genre=null)
+
+
+	 Time taken to load dynamic partitions: 0.124 seconds
+	 Time taken for adding to write entity : 0.0 seconds
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 5.32 sec   HDFS Read: 21754 HDFS Write: 1803 SUCCESS
+Total MapReduce CPU Time Spent: 5 seconds 320 msec
+OK
+Time taken: 17.541 seconds
+hive> SELECT * FROM movies_partitioned
+    > WHERE genre = 'Sci-Fi';
+OK
+102	Inception	2010	5002	8.8	2024-01-01 14:00:00	Sci-Fi
+104	Interstellar	2014	5004	8.6	2024-01-03 10:30:00	Sci-Fi
+Time taken: 0.143 seconds, Fetched: 2 row(s)
+hive> f) CREATE TABLE movies_bucketed (
+    >     movie_id INT,
+    >     title STRING,
+    >     genre STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating DOUBLE,
+    >     review_time STRING
+    > )
+    > CLUSTERED BY (release_year) INTO 4 BUCKETS
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS ORC;
+NoViableAltException(24@[])
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1387)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:330)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:245)
+FAILED: ParseException line 1:0 cannot recognize input near 'f' ')' 'CREATE'
+hive> CREATE TABLE movies_bucketed (
+    >     movie_id INT,
+    >     title STRING,
+    >     genre STRING,
+    >     release_year INT,
+    >     user_id INT,
+    >     rating DOUBLE,
+    >     review_time STRING
+    > )
+    > CLUSTERED BY (release_year) INTO 4 BUCKETS
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS ORC;
+OK
+Time taken: 0.038 seconds
+hive> SET hive.enforce.bucketing = true;
+hive> 
+    > INSERT INTO TABLE movies_bucketed
+    > SELECT * FROM movie_ratings;
+Query ID = bdalab_20260212095509_0a1adf71-ce24-4745-ac74-4cfdefe1d49f
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks determined at compile time: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0012, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0012/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0012
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 4
+2026-02-12 09:55:16,575 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:55:20,647 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.84 sec
+2026-02-12 09:55:25,748 Stage-1 map = 100%,  reduce = 25%, Cumulative CPU 5.42 sec
+2026-02-12 09:55:27,792 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 8.27 sec
+2026-02-12 09:55:28,814 Stage-1 map = 100%,  reduce = 75%, Cumulative CPU 10.96 sec
+2026-02-12 09:55:29,830 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 13.18 sec
+MapReduce Total cumulative CPU time: 13 seconds 180 msec
+Ended Job = job_1770866841931_0012
+Loading data to table bigdata_db.movies_bucketed
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0013, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0013/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0013
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+2026-02-12 09:55:40,559 Stage-3 map = 0%,  reduce = 0%
+2026-02-12 09:55:44,647 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 2.99 sec
+2026-02-12 09:55:48,706 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 4.62 sec
+MapReduce Total cumulative CPU time: 4 seconds 620 msec
+Ended Job = job_1770866841931_0013
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 4   Cumulative CPU: 13.18 sec   HDFS Read: 49325 HDFS Write: 5470 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 4.62 sec   HDFS Read: 17971 HDFS Write: 545 SUCCESS
+Total MapReduce CPU Time Spent: 17 seconds 800 msec
+OK
+Time taken: 39.831 seconds
+hive> SELECT * FROM movies_bucketed
+    > WHERE release_year = 2019;
+OK
+105	Avengers: Endgame	Action	2019	5005	8.4	2024-01-04 09:00:00
+103	Parasite	Thriller	2019	5003	8.6	2024-01-02 16:45:00
+Time taken: 0.062 seconds, Fetched: 2 row(s)
+hive> bdalab@dscalab-03:~/230968114/lab6$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = de22e3eb-e70d-45fd-9745-52df5553d86b
+
+Logging initialized using configuration in jar:file:/usr/local/hive/lib/hive-common-3.1.3.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Hive Session ID = 330387fb-313d-4f57-8466-ef0c4996e878
+hive> show databases
+    > ;
+OK
+bigdata_db
+default
+Time taken: 0.336 seconds, Fetched: 2 row(s)
+hive> use bigdata_db;
+OK
+Time taken: 0.016 seconds
+hive> show tables;
+OK
+movie_ratings
+movies_bucketed
+movies_partitioned
+weblogs
+weblogs_bucketed
+weblogs_partitioned
+Time taken: 0.023 seconds, Fetched: 6 row(s)
+hive> CREATE TABLE flight_data (
+    >     flight_id INT,
+    >     airline STRING,
+    >     flight_number STRING,
+    >     origin STRING,
+    >     destination STRING,
+    >     departure_date STRING,
+    >     departure_time STRING,
+    >     arrival_time STRING,
+    >     delay_minutes INT,
+    >     status STRING
+    > )
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > STORED AS TEXTFILE
+    > TBLPROPERTIES ("skip.header.line.count"="1");
+OK
+Time taken: 0.396 seconds
+hive> load data inpath '/user/230968114/lab6/flight_data.csv' into table flight_data
+    > ;
+Loading data to table bigdata_db.flight_data
+OK
+Time taken: 0.388 seconds
+hive> select airline, count(*) as total_delays from flight_data where status = 'Delayed' group by airline order by total_delays desc;
+Query ID = bdalab_20260212095833_69ab142f-f5db-4565-9a4e-f939e805d054
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0014, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0014/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0014
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:58:40,095 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:58:44,207 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.93 sec
+2026-02-12 09:58:49,320 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.91 sec
+MapReduce Total cumulative CPU time: 3 seconds 910 msec
+Ended Job = job_1770866841931_0014
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0015, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0015/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0015
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2026-02-12 09:59:00,314 Stage-2 map = 0%,  reduce = 0%
+2026-02-12 09:59:03,385 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.32 sec
+2026-02-12 09:59:07,451 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 2.86 sec
+MapReduce Total cumulative CPU time: 2 seconds 860 msec
+Ended Job = job_1770866841931_0015
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.91 sec   HDFS Read: 15675 HDFS Write: 96 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 2.86 sec   HDFS Read: 7555 HDFS Write: 87 SUCCESS
+Total MapReduce CPU Time Spent: 6 seconds 770 msec
+OK
+Time taken: 35.444 seconds
+hive> select status, count(*) as total_flights from flight_data group by status;
+Query ID = bdalab_20260212095944_4af0790b-afee-4f9f-90a6-7550fac3c5b9
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0016, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0016/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0016
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 09:59:50,597 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 09:59:54,689 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.32 sec
+2026-02-12 09:59:59,790 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 5.06 sec
+MapReduce Total cumulative CPU time: 5 seconds 60 msec
+Ended Job = job_1770866841931_0016
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 5.06 sec   HDFS Read: 15223 HDFS Write: 150 SUCCESS
+Total MapReduce CPU Time Spent: 5 seconds 60 msec
+OK
+NULL	1
+ Delayed	2
+ On Time	3
+Time taken: 16.617 seconds, Fetched: 3 row(s)
+hive> select airline, avg(delay_minutes) as avg_delay from flight_data group by airline;
+Query ID = bdalab_20260212100134_1296b599-92ad-43df-8822-b4fa60f3d69b
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0017, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0017/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0017
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 10:01:41,239 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 10:01:45,313 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.87 sec
+2026-02-12 10:01:50,397 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.97 sec
+MapReduce Total cumulative CPU time: 4 seconds 970 msec
+Ended Job = job_1770866841931_0017
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.97 sec   HDFS Read: 17267 HDFS Write: 230 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 970 msec
+OK
+ American	NULL
+ Delta	NULL
+ JetBlue	NULL
+ Southwest	NULL
+ United	NULL
+ status	NULL
+Time taken: 16.657 seconds, Fetched: 6 row(s)
+hive> CREATE TABLE flight_partitioned (
+    >     flight_id INT,
+    >     airline STRING,
+    >     flight_number STRING,
+    >     origin STRING,
+    >     destination STRING,
+    >     departure_time STRING,
+    >     arrival_time STRING,
+    >     delay_minutes INT,
+    >     status STRING
+    > )
+    > PARTITIONED BY (departure_date STRING)
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ',';
+OK
+Time taken: 0.04 seconds
+hive> SET hive.exec.dynamic.partition=true;
+hive> SET hive.exec.dynamic.partition.mode=nonstrict;
+hive> INSERT INTO TABLE flight_partitioned PARTITION (departure_date)
+    > SELECT flight_id, airline, flight_number,
+    >        origin, destination,
+    >        departure_time, arrival_time,
+    >        delay_minutes, status,
+    >        departure_date
+    > FROM flight_data;
+Query ID = bdalab_20260212100230_3af4babe-791b-459d-bd36-91866a75b875
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0018, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0018/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0018
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2026-02-12 10:02:36,854 Stage-1 map = 0%,  reduce = 0%
+2026-02-12 10:02:41,958 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.15 sec
+2026-02-12 10:02:47,042 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.74 sec
+MapReduce Total cumulative CPU time: 4 seconds 740 msec
+Ended Job = job_1770866841931_0018
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Moving data to directory hdfs://localhost:9000/user/hive/warehouse/bigdata_db.db/flight_partitioned/.hive-staging_hive_2026-02-12_10-02-30_218_942555366800020010-1/-ext-10000
+Loading data to table bigdata_db.flight_partitioned partition (departure_date=null)
+
+
+	 Time taken to load dynamic partitions: 0.177 seconds
+	 Time taken for adding to write entity : 0.001 seconds
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.74 sec   HDFS Read: 25271 HDFS Write: 2312 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 740 msec
+OK
+Time taken: 18.362 seconds
+hive> CREATE TABLE flight_bucketed (
+    >     flight_id INT,
+    >     airline STRING,
+    >     flight_number STRING,
+    >     origin STRING,
+    >     destination STRING,
+    >     departure_date STRING,
+    >     departure_time STRING,
+    >     arrival_time STRING,
+er>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1770866841931_0020, Tracking URL = http://dscalab-03:8088/proxy/application_1770866841931_0020/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1770866841931_0020
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+2026-02-12 10:03:54,470 Stage-3 map = 0%,  reduce = 0%
+2026-02-12 10:03:58,542 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 2.93 sec
+2026-02-12 10:04:03,621 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 4.62 sec
+MapReduce Total cumulative CPU time: 4 seconds 620 msec
+Ended Job = job_1770866841931_0020
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 4   Cumulative CPU: 12.1 sec   HDFS Read: 57457 HDFS Write: 5050 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 4.62 sec   HDFS Read: 20676 HDFS Write: 697 SUCCESS
+Total MapReduce CPU Time Spent: 16 seconds 720 msec
+OK
+Time taken: 39.537 seconds
+hive> SELECT * FROM flight_bucketed
+    > WHERE airline = 'Delta';
+OK
+Time taken: 0.077 seconds
+

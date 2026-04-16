@@ -1,0 +1,56 @@
+1. Upload a New File (File1.txt)
+
+hdfs dfs -put file1.txt /user/230968114/lab2/
+
+(a) Check the permission of the file
+
+hdfs dfs -ls /user/230968114/lab2/
+
+(b) Change the permission of the file
+
+hdfs dfs -chmod 700 /user/230968114/lab2/file1.txt
+
+(c) Check ownership of the file
+
+hdfs dfs -ls /user/230968114/lab2/file1.txt
+
+
+2. Upload a Large File (largefile.txt)
+
+hdfs dfs -put largefile.txt /user/230968114/lab2/
+
+(a) Check block details of the file
+
+hdfs fsck /user/230968114/lab2/largefile.txt -files -blocks -locations
+
+(b) View current replication factor
+
+hdfs dfs -stat %r /user/230968114/lab2/largefile.txt
+hdfs dfs -ls /user/230968114/lab2/largefile.txt
+
+(c) Modify replication factor
+
+hdfs dfs -setrep -w 2 /user/230968114/lab2/largefile.txt
+hdfs dfs -stat %r /user/230968114/lab2/largefile.txt
+
+3. HDFS Directory & Storage Analysis
+
+(a) Check directory size (Disk Usage)
+
+hdfs dfs -du -h /user/230968114/lab2/
+hdfs dfs -du -s -h /user/230968114/lab2/
+
+(b) Find total capacity and usage of HDFS
+
+hdfs dfsadmin -report
+4. Upload analytics.txt and Perform Analysis
+
+hdfs dfs -put analytics.txt /user/230968114/lab2/
+
+(a) Count number of lines in file
+
+hdfs dfs -cat /user/230968114/lab2/analytics.txt | wc -l
+
+(b) Count occurrences of word "Hadoop"
+
+hdfs dfs -cat /user/230968114/lab2/analytics.txt | grep -o "Hadoop" | wc -l

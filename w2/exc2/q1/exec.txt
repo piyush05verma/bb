@@ -1,0 +1,13 @@
+hdfs dfs -rm -r /user/230968114/lab2/wc_output
+
+chmod +x mapper.py
+chmod +x reducer.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files mapper.py,reducer.py \
+-input /user/230968114/lab2/input.txt \
+-output /user/230968114/lab2/wc_output \
+-mapper "python3 mapper.py" \
+-reducer "python3 reducer.py"
+
+hdfs dfs -cat /user/230968114/lab2/wc_output/part-00000

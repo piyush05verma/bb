@@ -1,0 +1,4 @@
+Hadoop is big data framework.
+Hadoop uses MapReduce.
+MapReduce processes large data.
+Big data requires Hadoop.

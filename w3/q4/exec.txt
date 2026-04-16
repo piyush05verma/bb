@@ -1,0 +1,15 @@
+hdfs dfs -put data.txt /user/230968114/lab3/
+
+hdfs dfs -rm -r /user/230968114/lab3/avg_output
+
+chmod +x avg_mapper.py
+chmod +x avg_reducer.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files avg_mapper.py,avg_reducer.py \
+-input /user/230968114/lab3/data.txt \
+-output /user/230968114/lab3/avg_output \
+-mapper "python3 avg_mapper.py" \
+-reducer "python3 avg_reducer.py"
+
+hdfs dfs -cat /user/230968114/lab3/avg_output/part-00000

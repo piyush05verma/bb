@@ -1,0 +1,38 @@
+2. Library Table
+
+a) Create Table
+
+create 'library', 'book_info', 'availability'
+
+b) Insert Data
+
+put 'library', 'B001', 'book_info:title', 'DBMS'
+put 'library', 'B001', 'book_info:author', 'Navathe'
+put 'library', 'B001', 'availability:status', 'Available'
+
+put 'library', 'B002', 'book_info:title', 'OS'
+put 'library', 'B002', 'availability:status', 'Borrowed'
+put 'library', 'B002', 'availability:borrower', 'John'
+
+put 'library', 'B003', 'book_info:title', 'AI'
+put 'library', 'B003', 'availability:status', 'Available'
+
+c) Retrieve Book B002
+
+get 'library', 'B002'
+
+d) Available Books
+
+scan 'library', {
+  FILTER => "SingleColumnValueFilter('availability','status',=,'binary:Available')"
+}
+
+e) Update B003
+
+put 'library', 'B003', 'availability:status', 'Borrowed'
+put 'library', 'B003', 'availability:borrower', 'Michael'
+
+f) Count Books
+
+count 'library'
+

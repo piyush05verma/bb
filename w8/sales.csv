@@ -1,0 +1,13 @@
+TransactionID,Product,Category,Price,Quantity
+1,Laptop,Electronics,800,1
+2,Phone,Electronics,500,2
+3,Shirt,Clothing,40,5
+4,Jeans,Clothing,60,3
+5,TV,Electronics,700,1
+6,Shoes,Footwear,80,4
+7,Watch,Accessories,150,2
+8,Tablet,Electronics,300,3
+9,Jacket,Clothing,120,2
+10,Headphones,Electronics,100,5
+11,Sandals,Footwear,50,6
+12,Bag,Accessories,90,3

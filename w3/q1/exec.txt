@@ -1,0 +1,15 @@
+hdfs dfs -put file.txt /user/230968114/lab3/
+
+hdfs dfs -rm -r /user/230968114/lab3/char_output
+
+chmod +x char_mapper.py
+chmod +x char_reducer.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files char_mapper.py,char_reducer.py \
+-input /user/230968114/lab3/file.txt \
+-output /user/230968114/lab3/char_output \
+-mapper "python3 char_mapper.py" \
+-reducer "python3 char_reducer.py"
+
+hdfs dfs -cat /user/230968114/lab3/char_output/part-00000

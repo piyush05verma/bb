@@ -1,0 +1,11 @@
+EmployeeID,Name,Age,Department,Gender,JobRole,MonthlyIncome
+101,John,28,IT,Male,Software Engineer,50000
+102,Mary,32,HR,Female,HR Manager,45000
+103,Steve,40,Finance,Male,Accountant,70000
+104,Linda,26,Sales,Female,Sales Executive,40000
+105,James,35,IT,Male,Tech Lead,80000
+106,Susan,29,HR,Female,HR Executive,42000
+107,Robert,38,Finance,Male,Manager,90000
+108,Patricia,27,Sales,Female,Sales Executive,42000
+109,Michael,45,IT,Male,Architect,95000
+110,Barbara,31,Finance,Female,Analyst,65000

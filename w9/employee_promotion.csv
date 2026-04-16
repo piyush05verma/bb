@@ -1,0 +1,16 @@
+EmployeeID,Age,Department,Education,Gender,LengthOfService,PreviousYearRating,IsPromoted
+201,25,Sales,Bachelors,Male,2,3,0
+202,30,HR,Masters,Female,5,4,1
+203,28,IT,Bachelors,Male,3,5,1
+204,35,Finance,Masters,Female,7,4,1
+205,40,IT,PhD,Male,10,5,1
+206,23,Sales,Bachelors,Female,1,2,0
+207,31,HR,Masters,Male,4,3,0
+208,29,IT,Bachelors,Female,3,4,1
+209,45,Finance,PhD,Male,12,5,1
+210,26,Sales,Bachelors,Male,2,3,0
+211,38,IT,Masters,Female,9,5,1
+212,27,HR,Bachelors,Female,3,2,0
+213,33,Finance,Masters,Male,6,4,1
+214,24,Sales,Bachelors,Female,1,2,0
+215,41,IT,PhD,Male,11,5,1

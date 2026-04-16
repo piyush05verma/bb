@@ -1,0 +1,16 @@
+hdfs dfs -put students.csv /user/230968114/lab4/join_input/
+hdfs dfs -put courses.csv /user/230968114/lab4/join_input/
+
+hdfs dfs -rm -r /user/230968114/lab4/join_output
+
+chmod +x join_mapper.py
+chmod +x join_reducer.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files join_mapper.py,join_reducer.py \
+-input /user/230968114/lab4/join_input \
+-output /user/230968114/lab4/join_output \
+-mapper "python3 join_mapper.py" \
+-reducer "python3 join_reducer.py"
+
+hdfs dfs -cat /user/230968114/lab4/join_output/part-00000

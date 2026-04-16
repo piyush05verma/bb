@@ -1,0 +1,15 @@
+hdfs dfs -put scores.txt /user/230968114/lab3/
+
+hdfs dfs -rm -r /user/230968114/lab3/topn_output
+
+chmod +x topn_mapper.py
+chmod +x topn_reducer.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files topn_mapper.py,topn_reducer.py \
+-input /user/230968114/lab3/scores.txt \
+-output /user/230968114/lab3/topn_output \
+-mapper "python3 topn_mapper.py" \
+-reducer "python3 topn_reducer.py"
+
+hdfs dfs -cat /user/230968114/lab3/topn_output/part-00000

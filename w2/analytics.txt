@@ -1,0 +1,93 @@
+Week 1 - Understanding Hadoop and HDFS Basic Commands
+Introduction to the Hadoop Ecosystem and HDFS
+The Hadoop Ecosystem is a collection of tools and frameworks that work together to manage and process
+big data. HDFS (Hadoop Distributed File System) is the backbone of the Hadoop ecosystem, providing
+distributed storage and fault tolerance.
+Hadoop Ecosystem Overview
+The Hadoop Ecosystem is built around the core Hadoop components and includes tools for data storage,
+processing, querying, and analytics. Here's a breakdown:
+Core Components:
+1. HDFS (Hadoop Distributed File System):
+oProvides distributed storage.
+oHandles large files across multiple machines.
+2. YARN (Yet Another Resource Negotiator):
+o
+Manages resources and job scheduling in the cluster.
+3. MapReduce:
+o
+Programming model for data processing.
+Supporting Tools:1. Apache Hive:
+o
+Data warehouse tool for querying data in HDFS using SQL-like language (HiveQL).
+2. Apache HBase:
+o
+NoSQL database for real-time read/write access to large datasets.
+3. Apache Spark:
+o
+Fast, in-memory data processing engine.
+4. Apache Pig:
+o
+High-level platform for creating MapReduce programs using a scripting language (Pig
+Latin).
+5. Apache Sqoop:
+o
+Tool for transferring data between Hadoop and relational databases.
+6. Apache Flume:
+o
+Tool for collecting and transferring large amounts of log data into HDFS.
+7. ZooKeeper:
+o
+Centralized service for managing distributed systems.
+8. Oozie:
+o
+Workflow scheduler for Hadoop jobs.
+HDFS Basics
+HDFS is the storage layer of Hadoop, designed for scalability and fault tolerance. It handles massive data
+volumes by breaking files into smaller chunks and distributing them across a cluster.
+HDFS Features:
+•Replication: Ensures fault tolerance by replicating data blocks (default: 3 copies).
+•Write-Once, Read-Many: Optimized for batch processing.
+•Scalability: Handles petabytes of data across thousands of nodes.
+HDFS Architecture:
+1. NameNode:
+oMaintains metadata (e.g., file structure, permissions).
+oCoordinates DataNodes but does not store data.
+2. DataNodes:
+oStore actual data blocks.
+oPerform read/write operations as instructed by NameNode.
+3. Secondary NameNode:
+o
+Periodically saves snapshots of NameNode metadata (not a backup).Working with Hadoop:
+•
+Open a new terminal and start the Hadoop service by following commands
+start-dfs.sh
+start-yarn.sh
+This command initializes all the required Hadoop daemons for the cluster to become
+operational.
+When you want to stop the services use the command:
+stop-dfs.sh
+stop-yarn.sh
+•
+Check the Status of Hadoop Services (To confirm that all necessary Hadoop services are up
+and running, you can check their status using the ‘jps’ command)
+jps
+The ‘jps’ command displays the Java Virtual Machine (JVM) processes and should show a list
+of Hadoop services running, such as the NameNode, DataNode, ResourceManager, and
+NodeManager.•
+Accessing Hadoop Namenode and Resource Manager:
+To access the Hadoop Namenode, open a web browser and enter the following URL:
+http://localhost:9870
+Similarly, to access the Hadoop Resource Manager, open a web browser and enter the
+following URL:
+http://localhost:8088
+•
+Verifying the Hadoop Cluster:
+You can check the Hadoop version by following command
+hadoop version
+Create Directories in HDFS:
+hdfs dfs -mkdir /user/dir_name
+List Directories in HDFS:
+hdfs dfs -ls /
+hdfs dfs -ls /user/
+Transfer Files to the Hadoop File System:
+hdfs dfs -put source-filename /destination_folder/

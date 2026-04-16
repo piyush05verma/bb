@@ -1,0 +1,16 @@
+EmployeeID,Age,Department,JobRole,Gender,YearsAtCompany,MonthlyIncome,Attrition
+101,25,Sales,Sales Executive,Male,2,30000,Yes
+102,30,HR,HR Manager,Female,5,45000,No
+103,28,IT,Software Engineer,Male,3,50000,No
+104,35,Finance,Accountant,Female,7,60000,No
+105,40,IT,Tech Lead,Male,10,80000,No
+106,23,Sales,Sales Executive,Female,1,28000,Yes
+107,31,HR,Recruiter,Male,4,40000,No
+108,29,IT,Software Engineer,Female,3,52000,No
+109,45,Finance,Manager,Male,12,90000,No
+110,26,Sales,Sales Executive,Male,2,32000,Yes
+111,38,IT,Project Manager,Female,9,85000,No
+112,27,HR,HR Executive,Female,3,38000,Yes
+113,33,Finance,Analyst,Male,6,55000,No
+114,24,Sales,Sales Executive,Female,1,29000,Yes
+115,41,IT,Architect,Male,11,95000,No

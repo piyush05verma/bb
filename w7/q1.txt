@@ -1,0 +1,119 @@
+1. HBase Tables (students, employees, orders)
+
+a) Create Tables
+
+create 'students', 'personal', 'academic'
+create 'employees', 'details', 'salary'
+create 'orders', 'customer', 'items', 'payment'
+
+b) Describe Tables
+
+bash
+describe 'students'
+describe 'employees'
+describe 'orders'
+
+c) Delete and Recreate orders
+
+bash
+disable 'orders'
+drop 'orders'
+
+create 'orders', 'customer', 'items', 'payment'
+
+d) Insert Data
+
+Students
+
+bash
+put 'students', 'S001', 'personal:name', 'Aman'
+put 'students', 'S001', 'personal:age', '20'
+put 'students', 'S001', 'academic:marks', '85'
+put 'students', 'S001', 'academic:grade', 'A'
+
+put 'students', 'S002', 'personal:name', 'Riya'
+put 'students', 'S002', 'personal:age', '21'
+put 'students', 'S002', 'academic:marks', '75'
+put 'students', 'S002', 'academic:grade', 'B'
+
+put 'students', 'S003', 'personal:name', 'Karan'
+put 'students', 'S003', 'personal:age', '22'
+put 'students', 'S003', 'academic:marks', '90'
+put 'students', 'S003', 'academic:grade', 'A'
+
+Employees
+
+put 'employees', 'E001', 'details:name', 'John'
+put 'employees', 'E001', 'details:age', '30'
+put 'employees', 'E001', 'details:department', 'IT'
+put 'employees', 'E001', 'salary:basic', '60000'
+put 'employees', 'E001', 'salary:bonus', '5000'
+
+put 'employees', 'E002', 'details:name', 'Sara'
+put 'employees', 'E002', 'details:age', '28'
+put 'employees', 'E002', 'details:department', 'HR'
+put 'employees', 'E002', 'salary:basic', '50000'
+put 'employees', 'E002', 'salary:bonus', '4000'
+
+put 'employees', 'E003', 'details:name', 'Mike'
+put 'employees', 'E003', 'details:department', 'IT'
+put 'employees', 'E003', 'salary:basic', '70000'
+
+Orders
+
+put 'orders', 'O001', 'customer:name', 'Aman'
+put 'orders', 'O001', 'customer:email', 'aman@gmail.com'
+put 'orders', 'O001', 'items:product', 'Laptop'
+put 'orders', 'O001', 'items:quantity', '1'
+put 'orders', 'O001', 'payment:mode', 'Credit Card'
+put 'orders', 'O001', 'payment:amount', '50000'
+
+put 'orders', 'O002', 'customer:name', 'Riya'
+put 'orders', 'O002', 'payment:mode', 'UPI'
+put 'orders', 'O002', 'payment:amount', '2000'
+
+put 'orders', 'O003', 'customer:name', 'Karan'
+put 'orders', 'O003', 'payment:mode', 'Credit Card'
+put 'orders', 'O003', 'payment:amount', '8000'
+
+e) Retrieve Name & Marks
+
+scan 'students', {COLUMNS => ['personal:name', 'academic:marks']}
+
+f) Employees with basic > 55000**
+
+scan 'employees', {
+  FILTER => "SingleColumnValueFilter('salary','basic',>, 'binary:55000')"
+}
+
+g) Top 3 Orders
+
+scan 'orders', {LIMIT => 3}
+
+h) Students with marks > 80
+
+scan 'students', {
+  FILTER => "SingleColumnValueFilter('academic','marks',>, 'binary:80')"
+}
+
+i) Employees in IT
+
+scan 'employees', {
+  FILTER => "SingleColumnValueFilter('details','department',=,'binary:IT')"
+}
+
+j) Orders with Credit Card
+
+scan 'orders', {
+  FILTER => "SingleColumnValueFilter('payment','mode',=,'binary:Credit Card')"
+}
+
+k) Count Employees
+
+count 'employees'
+
+l) Oldest Student
+
+scan 'students', {
+  FILTER => "SingleColumnValueFilter('personal','age',>, 'binary:21')"
+}

@@ -1,0 +1,15 @@
+hdfs dfs -put weather.txt /user/230968114/lab3/
+
+hdfs dfs -rm -r /user/230968114/lab3/weather_output
+
+chmod +x max_temp_mapper.py
+chmod +x max_temp_reducer.py
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files max_temp_mapper.py,max_temp_reducer.py \
+-input /user/230968114/lab3/weather.txt \
+-output /user/230968114/lab3/weather_output \
+-mapper "python3 max_temp_mapper.py" \
+-reducer "python3 max_temp_reducer.py"
+
+hdfs dfs -cat /user/230968114/lab3/weather_output/part-00000
